@@ -184,6 +184,12 @@ function applyGravity() {
   if(player.previousPosition.y !==player.position.y){
     playerGrounded=false;
   }
+  for(i=0;i<monsters.length;i++){
+    monsters[i].velocity.y+=GRAVITY;
+    if(monsters[i].position.y>=height){
+      monsters[i].remove();
+    }
+  }
 }
 
 // Called in the draw() function. Continuously checks for collisions and overlaps
@@ -191,7 +197,12 @@ function applyGravity() {
 // occurs, a specific callback function is run.
 function checkCollisions() {
   player.collide(platforms, platformCollision);
+  monsters.collide(platforms, platformCollision);
+  //for(i=0;i<monsters.length;i++){
+  //if()
+  //}
 }
+
 
 // Callback function that runs when the player or a monster collides with a
 // platform.
